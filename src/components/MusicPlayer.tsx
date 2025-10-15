@@ -9,11 +9,37 @@ export default function MusicPlayer() {
   const musicUrl = '/music/hasta-ese-dia.mp4'
 
   useEffect(() => {
-    // Intentar reproducir automáticamente después de 1 segundo
-    const timer = setTimeout(() => {
-      handlePlay()
-    }, 1000)
+    // Intentar reproducir automáticamente
+    const attemptAutoplay = async () => {
+      if (audioRef.current) {
+        try {
+          await audioRef.current.play()
+          setIsPlaying(true)
+        } catch (error) {
+          // Si falla el autoplay, esperar a la primera interacción del usuario
+          const startOnInteraction = async () => {
+            try {
+              if (audioRef.current) {
+                await audioRef.current.play()
+                setIsPlaying(true)
+                // Remover listeners después de reproducir
+                document.removeEventListener('click', startOnInteraction)
+                document.removeEventListener('scroll', startOnInteraction)
+                document.removeEventListener('touchstart', startOnInteraction)
+              }
+            } catch (err) {
+              console.log('No se pudo reproducir automáticamente')
+            }
+          }
 
+          document.addEventListener('click', startOnInteraction, { once: true })
+          document.addEventListener('scroll', startOnInteraction, { once: true })
+          document.addEventListener('touchstart', startOnInteraction, { once: true })
+        }
+      }
+    }
+
+    const timer = setTimeout(attemptAutoplay, 500)
     return () => clearTimeout(timer)
   }, [])
 
