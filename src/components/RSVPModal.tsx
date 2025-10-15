@@ -25,7 +25,7 @@ export default function RSVPModal({ isOpen, onClose }: RSVPModalProps) {
     try {
       const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxhMfcP9mSipwQjHi8UKu8fn3pL4t5a3BAsKCPbp8aDUBG3HYesivj8VSuEg4YsyVDxUA/exec'
 
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
+      await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: {
