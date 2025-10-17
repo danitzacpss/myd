@@ -74,7 +74,7 @@ export default function PhotoGallery() {
             Galería de Fotos
           </h2>
           <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
-            {isMobile ? '4 fotos' : '8 años'} de amor, risas y momentos inolvidables que nos han traído hasta aquí
+            8 años de amor, risas y momentos inolvidables que nos han traído hasta aquí
           </p>
         </AnimatedSection>
 

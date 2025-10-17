@@ -6,7 +6,7 @@ export default function Hero() {
         <img
           src="/images/hero.png"
           alt="Michael & Danitza"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-[center_30%] sm:object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-paper-100"></div>
       </div>
