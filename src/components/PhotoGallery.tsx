@@ -14,11 +14,23 @@ const photos = [
   { id: 10, src: '/images/IMG_20250311_145845.jpg', alt: 'Michael & Danitza 10' },
 ]
 
-const PHOTOS_PER_VIEW = 8
-
 export default function PhotoGallery() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Detect mobile screen
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640) // sm breakpoint
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Get photos per view based on screen size
+  const photosPerView = isMobile ? 4 : 8
 
   // Autoplay carousel
   useEffect(() => {
@@ -48,7 +60,7 @@ export default function PhotoGallery() {
   // Get visible photos for carousel
   const getVisiblePhotos = () => {
     const visible = []
-    for (let i = 0; i < PHOTOS_PER_VIEW; i++) {
+    for (let i = 0; i < photosPerView; i++) {
       visible.push(photos[(currentIndex + i) % photos.length])
     }
     return visible
@@ -62,7 +74,7 @@ export default function PhotoGallery() {
             Galería de Fotos
           </h2>
           <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
-            8 años de amor, risas y momentos inolvidables que nos han traído hasta aquí
+            {isMobile ? '4 fotos' : '8 años'} de amor, risas y momentos inolvidables que nos han traído hasta aquí
           </p>
         </AnimatedSection>
 
@@ -92,7 +104,7 @@ export default function PhotoGallery() {
           {/* Carousel indicators */}
           <div className="flex justify-center items-center gap-2 mt-6">
             <span className="text-sm text-gray-600">
-              {currentIndex + 1}-{Math.min(currentIndex + PHOTOS_PER_VIEW, photos.length)} de {photos.length} fotos
+              {currentIndex + 1}-{Math.min(currentIndex + photosPerView, photos.length)} de {photos.length} fotos
             </span>
             <div className="flex gap-1 ml-3">
               {photos.map((_, index) => (
@@ -100,7 +112,7 @@ export default function PhotoGallery() {
                   key={index}
                   onClick={() => setCurrentIndex(index)}
                   className={`h-2 rounded-full transition-all duration-300 ${
-                    index >= currentIndex && index < currentIndex + PHOTOS_PER_VIEW
+                    index >= currentIndex && index < currentIndex + photosPerView
                       ? 'w-6 bg-palo-rosa-500'
                       : 'w-2 bg-gray-300 hover:bg-palo-rosa-300'
                   }`}

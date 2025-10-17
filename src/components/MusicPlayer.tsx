@@ -3,10 +3,10 @@ import { useState, useRef, useEffect } from 'react'
 export default function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [showPlayer, setShowPlayer] = useState(true)
-  const audioRef = useRef<HTMLVideoElement>(null)
+  const audioRef = useRef<HTMLAudioElement>(null)
 
   // Canción: Lasso - Hasta Ese Día
-  const musicUrl = '/music/hasta-ese-dia.mp4'
+  const musicUrl = '/music/Lasso - Hasta Ese Día (Lyric Video).mp3'
 
   useEffect(() => {
     // Intentar reproducir automáticamente
@@ -71,13 +71,13 @@ export default function MusicPlayer() {
 
   return (
     <>
-      <video ref={audioRef} loop style={{ display: 'none' }}>
-        <source src={musicUrl} type="video/mp4" />
-      </video>
+      <audio ref={audioRef} loop style={{ display: 'none' }}>
+        <source src={musicUrl} type="audio/mpeg" />
+      </audio>
 
       {showPlayer && (
-        <div className="fixed bottom-6 right-6 z-40 animate-fade-in">
-          <div className="bg-white rounded-full shadow-md p-4 border border-palo-rosa-100/50 flex items-center gap-3">
+        <div className="fixed top-6 right-4 sm:bottom-6 sm:top-auto sm:right-6 z-40 animate-fade-in">
+          <div className="bg-white rounded-full shadow-md p-3 sm:p-4 border border-palo-rosa-100/50 flex items-center gap-2 sm:gap-3">
             <button
               onClick={togglePlay}
               className="w-12 h-12 rounded-full bg-palo-rosa-400 hover:bg-palo-rosa-500 text-white flex items-center justify-center transition-all hover:scale-110 shadow-md"
@@ -94,13 +94,13 @@ export default function MusicPlayer() {
               )}
             </button>
 
-            <div className="flex flex-col">
+            <div className="hidden sm:flex flex-col">
               <span className="text-xs font-medium text-gray-800">Lasso - Hasta Ese Día</span>
               <span className="text-xs text-gray-500">{isPlaying ? 'Reproduciendo' : 'Pausada'}</span>
             </div>
 
             {isPlaying && (
-              <div className="flex gap-1 items-center ml-1">
+              <div className="hidden sm:flex gap-1 items-center ml-1">
                 <div className="w-1 h-3 bg-palo-rosa-300 rounded-full animate-pulse" style={{ animationDelay: '0ms' }}></div>
                 <div className="w-1 h-4 bg-palo-rosa-400 rounded-full animate-pulse" style={{ animationDelay: '150ms' }}></div>
                 <div className="w-1 h-5 bg-palo-rosa-300 rounded-full animate-pulse" style={{ animationDelay: '300ms' }}></div>
@@ -109,7 +109,7 @@ export default function MusicPlayer() {
 
             <button
               onClick={() => setShowPlayer(false)}
-              className="ml-2 text-gray-400 hover:text-gray-600 transition-colors"
+              className="hidden sm:block ml-2 text-gray-400 hover:text-gray-600 transition-colors"
               aria-label="Cerrar reproductor"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -123,7 +123,7 @@ export default function MusicPlayer() {
       {!showPlayer && (
         <button
           onClick={() => setShowPlayer(true)}
-          className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-palo-rosa-400 hover:bg-palo-rosa-500 text-white flex items-center justify-center shadow-md transition-all hover:scale-110"
+          className="fixed top-6 right-4 sm:bottom-6 sm:top-auto sm:right-6 z-40 w-14 h-14 rounded-full bg-palo-rosa-400 hover:bg-palo-rosa-500 text-white flex items-center justify-center shadow-md transition-all hover:scale-110"
           aria-label="Mostrar reproductor"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

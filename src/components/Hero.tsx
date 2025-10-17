@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="relative min-h-[70vh] sm:min-h-[80vh] w-full overflow-hidden">
+    <section className="relative min-h-[90vh] sm:min-h-[80vh] w-full overflow-hidden">
       {/* Hero Image */}
       <div className="absolute inset-0">
         <img
@@ -12,7 +12,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative h-full min-h-[70vh] sm:min-h-[80vh] flex flex-col items-center justify-end pb-12 sm:pb-16 px-4">
+      <div className="relative h-full min-h-[90vh] sm:min-h-[80vh] flex flex-col items-center justify-end pb-12 sm:pb-16 px-4">
         <div className="text-center animate-fade-up">
           <p className="font-script text-[#E8D4D1] text-2xl sm:text-3xl mb-4 drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)] font-semibold">
             Nos casamos
