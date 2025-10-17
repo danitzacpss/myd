@@ -3,22 +3,22 @@ import AnimatedSection from './AnimatedSection'
 export default function Recommendations() {
   const recommendations = [
     {
-      icon: '/4.png',
+      icon: '/rosa1.png',
       title: 'Vestimenta Formal/Fiesta',
       description: 'No utilizar color blanco, beige ni sus derivados, tanto hombres como mujeres.'
     },
     {
-      icon: '/5.png',
+      icon: '/rosa2.png',
       title: '¡No olvides tus zapatillas para bailar!',
       description: 'La pista de baile nos espera y queremos que bailes toda la noche sin preocupaciones.'
     },
     {
-      icon: '/6.png',
+      icon: '/rosa3.png',
       title: 'Lleva algo para abrigarte',
       description: 'Las noches de febrero pueden ser frescas, así que trae algo cómodo para mantenerte calientito.'
     },
     {
-      icon: '/7.png',
+      icon: '/rosa4.png',
       title: 'Ven con toda tu energía y ganas de pasarlo bien',
       description: '¡Será una noche inolvidable llena de amor, música y celebración!'
     }
